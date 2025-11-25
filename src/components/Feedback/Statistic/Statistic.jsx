@@ -6,15 +6,14 @@ const Statistic = ({
   positivePercentage,
 }) => {
   return (
-    <>
-      <p className="text-[20px] p-2 text-center font-bold">Good:{goodCount}</p>
-      <p className="text-[20px] p-2 text-center font-bold">Neutral: {neutralCount} </p>
-      <p className="text-[20px] p-2 text-center font-bold">Bad:{badCount}</p>
-      <p className="text-[20px] p-2 text-center font-bold">Total: {countTotalFeedBack()}</p>
-      <p className="text-[20px] p-2 text-center font-bold">
-        Positive Feedback: {positivePercentage()}%
-      </p>
-    </>
+    <div className="text-lg p-4 text-center font-medium space-y-1.5 bg-white-100 mt-5 rounded-lg shadow-sm">
+      <p>Good: {goodCount}</p>
+      <p>Neutral: {neutralCount}</p>
+      <p>Bad: {badCount}</p>
+      <p>Total: {countTotalFeedBack()}</p>
+      <p>Positive Feedback: {positivePercentage()}%</p>
+    </div>
   );
 };
+
 export default Statistic;
