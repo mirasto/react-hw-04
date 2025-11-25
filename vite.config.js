@@ -1,14 +1,17 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
-// https://vite.dev/config/
+
+const BASE_PATH = '/react-hw-04/';
 export default defineConfig({
-  base: "/vite-create-react-app/",
+  base: process.env.NODE_ENV === 'production' ? BASE_PATH : '/',
   plugins: [
     react({
       babel: {
-        plugins: [["babel-plugin-react-compiler"]],
+        plugins: [['babel-plugin-react-compiler']],
       },
     }),
+    tailwindcss(),
   ],
 });
