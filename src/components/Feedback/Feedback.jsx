@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Option from './Option/Option';
+import Options from './Options/Options';
 import Statistic from './Statistic/Statistic';
 import Section from './Section/Section';
 
@@ -20,23 +20,18 @@ const Feedback = () => {
 
   const countTotalFeedBack = () => {
     return goodCount + neutralCount + badCount;
-  }
+  };
 
   const countPositiveFeedbackPercentage = () => {
     const total = countTotalFeedBack();
 
-    if (total === 0) {
-      return 0;
-    }
-
-    return Math.round((goodCount / total) * 100)
-
-  }
+    return total ? Math.round((goodCount / total) * 100) : 0;
+  };
 
   return (
     <>
       <Section title="Please Leave Feedback">
-        <Option
+        <Options
           onGoodClick={handleGoodCount}
           onNeutralClick={handleNeutralCount}
           onBadClick={handleBadCount}
@@ -49,7 +44,7 @@ const Feedback = () => {
           badCount={badCount}
           countTotalFeedBack={countTotalFeedBack}
           positivePercentage={countPositiveFeedbackPercentage}
-        ></Statistic>
+        />
       </Section>
     </>
   );

@@ -1,4 +1,4 @@
-export const Options = ({ onGoodClick, onNeutralClick, onBadClick }) => {
+const Options = ({ onGoodClick, onNeutralClick, onBadClick }) => {
   return (
     <>
       <div className="flex gap-3 justify-center mt-4">

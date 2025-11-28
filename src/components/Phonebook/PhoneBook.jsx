@@ -17,22 +17,33 @@ const PhoneBook = () => {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    if (name === 'name') setName(value);
-    if (name === 'number') setNumber(value);
-    if (name === 'filter') setFilter(value);
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      case 'filter':
+        setFilter(value);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     const isDuplicate = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
 
-    if (!name.trim() || !number.trim()) {
-      alert('Name or number is empty');
+    if (isDuplicate) {
+      alert(`${name} is already in contacts`);
       return;
     }
 
-    if (isDuplicate) {
-      alert(`${name} is already in contacts`);
+    if (!name.trim() || !number.trim()) {
+      alert('Name or number is empty');
       return;
     }
 
@@ -47,9 +58,9 @@ const PhoneBook = () => {
     setNumber('');
   };
 
-  const getFilteredContacts = () => {
-    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
-  };
+  const getFilteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   const deleteContact = id => {
     setContacts(prev => prev.filter(contact => contact.id !== id));
@@ -58,8 +69,8 @@ const PhoneBook = () => {
   return (
     <>
       <ContactForm name={name} number={number} onChange={handleChange} onSubmit={handleSubmit} />
-      <Filter filter={filter} onChange={handleChange} />
-      <ContactList contacts={getFilteredContacts()} onDelete={deleteContact} />
+      <Filter onChange={handleChange} />
+      <ContactList contacts={getFilteredContacts} onDelete={deleteContact} />
     </>
   );
 };
